@@ -1,8 +1,15 @@
 package com.restaurant.backend.services;
 
-import springfox.documentation.swagger2.mappers.ModelMapper;
+import com.restaurant.backend.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class BaseService {
 
+    @Autowired
     ModelMapper modelMapper;
+
+    @Autowired
+    ValidationService validationService;
+
 }
