@@ -17,17 +17,17 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value=ValidationException.class)
-    public CustomExceptionResponse validationExceptionHandler(ValidationException validationException){
-            return new CustomExceptionResponse(validationException.getMessage(),validationException.getStatus());
+    public ResponseEntity<CustomExceptionResponse> validationExceptionHandler(ValidationException validationException){
+            return new ResponseEntity<>(new CustomExceptionResponse(validationException.getMessage(),validationException.getStatus()),validationException.getStatus());
     }
 
-    @ExceptionHandler(value= ConstraintViolationException.class)
-    public CustomExceptionResponse constrantViolationHandler(ConstraintViolationException exception){
-        return new CustomExceptionResponse(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity constrantViolationHandler(ConstraintViolationException exception){
+        return new ResponseEntity<>(new CustomExceptionResponse(exception.getMessage(), HttpStatus.BAD_REQUEST),HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value= MethodArgumentNotValidException.class)
-    public CustomExceptionResponse handleErrors(MethodArgumentNotValidException exception){
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public  ResponseEntity  handleErrors(MethodArgumentNotValidException exception){
         Map<String,String> errors= new LinkedHashMap<>();
         exception.getBindingResult().getAllErrors().forEach(error->{
             String fieldName = ((FieldError) error).getField();
@@ -35,6 +35,6 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         String message = errors.entrySet().stream().map(e->e.getValue()).collect(Collectors.joining(", "));
-        return new CustomExceptionResponse(message,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new CustomExceptionResponse(message,HttpStatus.BAD_REQUEST),HttpStatus.BAD_REQUEST);
     }
 }
