@@ -48,5 +48,4 @@ public class Restaurant {
     @LastModifiedDate
     private Timestamp updatedAt;
 
-
 }
