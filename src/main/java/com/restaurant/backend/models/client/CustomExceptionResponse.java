@@ -1,10 +1,14 @@
 package com.restaurant.backend.models.client;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
-public class CustomExceptionResponse {
+@Getter
+@Setter
+public class CustomExceptionResponse  {
     private String message;
     private Integer code;
 

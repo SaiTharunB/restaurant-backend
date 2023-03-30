@@ -13,8 +13,7 @@ import java.util.List;
 @Document(collection = "users")
 public class DbUser {
     @Id
-    @NotBlank(message = "Id should not be blank")
-    private String userId;
+    private String id;
 
     @NotBlank(message = "First Name should not be blank")
     private String firstName;
@@ -30,7 +29,9 @@ public class DbUser {
 
     private List<String> cart;
 
-    @NotBlank(message = "password should not be blank")
+    @Size(min = 5,message = "password should be minimum 5 characters")
     private String password;
+
+    private String token;
 
 }
