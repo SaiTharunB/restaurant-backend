@@ -19,20 +19,22 @@ public class restaurantController {
     @Autowired
     RestaurantService restaurantService;
 
-//    @GetMapping(value = "/allRestaurants")
-//    public ResponseEntity<List<Restaurant>> getAllRestaurants(Pageable page){
-//
-//        List<Restaurant> restaurants = restaurantService.getAllRestaurants(page).toList();
-//
-//        return new ResponseEntity<List<Restaurant>>(restaurants, HttpStatus.OK);
-//    }
-//
-//    @GetMapping(value = "/restaurants")
-//    public ResponseEntity<List<Restaurant>> getRestaurants(Pageable page){
-//
-//        List<Restaurant> restaurants = restaurantService.getRestaurantByUserId(page).toList();
-//
-//    }
+    @GetMapping(value = "/allRestaurants")
+    public ResponseEntity<List<Restaurant>> getAllRestaurants(Pageable page){
+
+        List<Restaurant> restaurants = restaurantService.getAllRestaurants(page).toList();
+
+        return new ResponseEntity<List<Restaurant>>(restaurants, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/restaurants")
+    public ResponseEntity<List<Restaurant>> getRestaurants(Pageable page){
+
+        String userId = "";
+        List<Restaurant> restaurants = restaurantService.getRestaurantByUserId(userId, page).toList();
+
+        return new ResponseEntity<>(restaurants, HttpStatus.OK);
+    }
 
 
 }
