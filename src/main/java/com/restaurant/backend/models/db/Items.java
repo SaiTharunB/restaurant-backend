@@ -1,5 +1,6 @@
 package com.restaurant.backend.models.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,5 +24,8 @@ public class Items {
 
     @DecimalMin(value = "0.01", message = "Item price should not be 0")
     private BigDecimal itemPrice;
+
+    @NotBlank(message = "Restaurant id should not be blank")
+    private String restaurantId;
 
 }

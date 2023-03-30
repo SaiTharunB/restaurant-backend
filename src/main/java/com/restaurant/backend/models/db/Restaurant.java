@@ -38,6 +38,9 @@ public class Restaurant {
 
     private String restaurantRating;
 
+
+    private String userId;
+
     @ReadOnlyProperty
     @CreatedDate
     private Timestamp createdAt;
